@@ -50,14 +50,22 @@
 + (MDCSwipeToChooseOnChosenBlock)exitScreenOnChosenWithDuration:(NSTimeInterval)duration
                                                         options:(UIViewAnimationOptions)options {
     return ^(MDCSwipeResult *state) {
-        CGRect destination = MDCCGRectExtendedOutOfBounds(state.view.frame,
-                                                          state.view.superview.bounds,
-                                                          state.translation);
+
+        CGAffineTransform translationTransform;
+        if ( state.direction == MDCSwipeDirectionLeft ) {
+            translationTransform = CGAffineTransformMakeTranslation(-state.view.superview.bounds.size.width, 0);
+        }
+        else {
+            translationTransform = CGAffineTransformMakeTranslation(state.view.superview.bounds.size.width, 0);
+        }
+
+        CGAffineTransform transform = CGAffineTransformConcat(state.view.transform, translationTransform);
+
         [UIView animateWithDuration:duration
                               delay:0.0
                             options:options
                          animations:^{
-                             state.view.frame = destination;
+                             state.view.transform = transform;
                          } completion:^(BOOL finished) {
                              if (finished) {
                                  [state.view removeFromSuperview];

@@ -27,14 +27,9 @@
 typedef CGFloat MDCRotationDirection;
 extern const MDCRotationDirection MDCRotationAwayFromCenter;
 extern const MDCRotationDirection MDCRotationTowardsCenter;
+extern const MDCRotationDirection MDCRotationUndefined;
 
 @interface MDCViewState : NSObject
-
-/*!
- * The center of the view when the pan gesture began.
- */
-@property (nonatomic, assign) CGPoint originalCenter;
-@property (nonatomic, assign) CATransform3D originalTransform;
 
 /*!
  * When the pan gesture originates at the top half of the view, the view rotates

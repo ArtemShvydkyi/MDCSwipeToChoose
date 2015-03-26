@@ -26,6 +26,7 @@
 
 const MDCRotationDirection MDCRotationAwayFromCenter = 1.f;
 const MDCRotationDirection MDCRotationTowardsCenter = -1.f;
+const MDCRotationDirection MDCRotationUndefined = 0.f;
 
 @implementation MDCViewState
 
